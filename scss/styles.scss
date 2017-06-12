@@ -1,36 +1,11 @@
-// Variables
+@import "reset";
+@import "variables";
+@import "mixins";
 
-$deepBlue: #032f3e;
-$offWhite: #f8f9fb;
-$sectionHeading: 24px;
-$bannerHeading: 46px;
-
-//Mixins
-
-@mixin banner {
-	width: 100%;
-	position: relative;
-	color: white;
-	.banner-content {
-		position: absolute;
-		top: 50px;
-		width: 100%;
-	}
-	img {
-		width: 100%;
-	}
-	span {
-		font-size: $bannerHeading;
-		display: block;
-		text-transform: uppercase;
-		font-weight: bold;
-	}
-	span.title {
-		font-weight: normal;
-		margin-bottom: 30px;
-	}
+::selection {
+	background: lighten($deepBlue, 50);
+	color: #000;
 }
-
 #main-nav {
 	background: $deepBlue;
 	ul {
@@ -38,15 +13,54 @@ $bannerHeading: 46px;
 	}
 	li {
 		display: inline-block;
-		padding: 16px;
+		width: (90% / 6);
+		@include mQ(600px) {
+			width: 100%;
+		}
 	}
 	a {
+		display: block;
+		padding: 16px;
 		color: $offWhite;
 		text-decoration: none;
 		text-align: center;
+		transition: all 0.5s ease;
+		&:hover {
+			background: lighten($deepBlue, 15);
+		}
 	}
-}//End of main-nav
+}
+//End of main-nav
 
+#services {
+	text-align: center;
+	margin: 30px 0;
+	li {
+		display: inline-block;
+		box-sizing: border-box;
+		text-align: center;
+	}
+	img {
+		width: 150px;
+		margin: 20px 20%;
+	}
+	a {
+		text-decoration: none;
+		color: $deepBlue;
+		font-weight: bold;
+		&:hover {
+			color: complement($deepBlue);
+		}
+	}
+}
+
+
+#projects li {	
+	@include grid(5, 2%);
+	img {
+		width: 100%;
+	}
+}
 
 section h1 {
 	font-size: $sectionHeading;
